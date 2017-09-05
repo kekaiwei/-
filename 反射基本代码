@@ -1,0 +1,19 @@
+public static void main(String[] args) throws Exception {
+	Class c = Class.forName("com.itheima1.Student");
+	Student s = (Student)c.newInstance();
+	//System.out.println(obj);
+	Field f = c.getDeclaredField("name");
+	f.setAccessible(true);
+	f.set(s, "zhangsan");
+	System.out.println(s);
+	
+	Method m=c.getDeclaredMethod("show");
+	m.setAccessible(true);
+	m.invoke(s);
+	
+	Method m1=c.getMethod("setName", String.class);
+	m1.invoke(s, "李四");
+	Method m2=c.getMethod("getName");
+	String s1 =(String) m2.invoke(s);
+	System.out.println(s1);
+} 
